@@ -1,0 +1,179 @@
+:root {
+  --progress1: 0%;
+  --time1: 1000ms;
+  --progress2: 0%;
+  --time2: 1000ms;
+}
+
+@property --progress1 {
+  syntax: '<length-percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+@property --time1 {
+  syntax: '<time>';
+  inherits: false;
+  initial-value: 1000ms;
+}
+
+@property --progress2 {
+  syntax: '<length-percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+@property --time2 {
+  syntax: '<time>';
+  inherits: false;
+  initial-value: 1000ms;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #2a1152; 
+  width: 100vw;
+  height: 100vh;
+  padding: 10px;
+}
+
+div#info {
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px;
+  background-color: rgb(226, 39, 101, 0.1); 
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+div#info ul {
+  list-style: none;
+  padding: 10px 14px;
+  background-color: rgb(226, 39, 101, 0.1); 
+  border-radius: 8px;
+}
+
+div#info ul li {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.4rem;
+  color: #e22765;
+  /* display: inline-block; */
+}
+
+.container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 250px;
+  display: grid;
+  place-items: center;
+}
+
+
+
+div#circle1 {
+  display: block;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: conic-gradient(  
+    #2EB8AC var(--progress1),
+     /* #CAF2EE 0%  */
+    #e22765 0%
+  );
+
+  position: relative;
+  
+}
+
+div#circle2 {
+  display: block;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: conic-gradient(  
+    #e22765 var(--progress2),
+    /* #CAF2EE 0% */
+    #52f05f 0%
+  );
+
+  visibility: hidden;
+  transform: translateY(-250px);
+  position: relative;
+
+}
+
+  div#circle3 {
+  display: block;
+  width: 200px;
+  aspect-ratio: 1;
+  background-color: rgb(226, 39, 101, 0.2);
+  border-radius: 50%;
+  transform: translateY(-476px);
+  position: relative;
+} 
+
+
+
+ div#circle1::after {
+  content: '';
+  width: calc(100% - 4px);
+  aspect-ratio: 1;
+  background: #2a1152;
+  border-radius: inherit;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+
+div#circle2::after {
+  content: '';
+  width: calc(100% - 4px);
+  aspect-ratio: 1;
+  background-color: #2a1152;
+  border-radius: inherit;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: background-color 2s ease;
+} 
+
+
+div#circle1.animateDelay {
+  transition: --progress1 var(--time1) linear;
+}
+
+div#circle2.animateTime {
+  visibility: visible;
+  transition: --progress2 var(--time2) linear;
+}
+
+
+
+button#start {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #CAF2EE;
+  border: none;
+  transform: translateY(-380px);
+  cursor: pointer;
+  align-self: center;
+}
+
+button#start.disabled {
+  cursor: default;
+  background-color: #e22765;
+}
+
+
+
+

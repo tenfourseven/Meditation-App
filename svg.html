@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Basics</title>
+</head>
+
+<style>
+
+.svgbox {
+  width: 250px;
+  height: 250px;
+  
+}
+
+.circle {
+  stroke: grey;
+  fill: none;
+}
+
+.progress {
+  stroke: black;
+  stroke-width: 5px;
+  /* stroke-dasharray: 630; */
+  /* stroke-dashoffset: 40;   */
+  fill: none;
+  transform:  rotate(-90deg);
+  transform-origin: center;
+}
+
+</style>
+<body>
+
+
+  <svg class="svgbox">
+     <circle class="circle" r="100" cx="125" cy="125" />
+     <circle class="progress" r="100" cx="125" cy="125" />
+  </svg>
+
+
+  
+
+  <script>
+  
+    const progress = document.querySelector('.progress');
+    let radius = progress.r.baseVal.value;
+    console.log(radius);
+    // circumference 2PIr
+    let circumference = radius*2*Math.PI;
+    console.log(circumference);
+    progress.style.strokeDasharray = circumference;
+
+    // map to percentage values
+    
+    function setProgress(percent) {
+      progress.style.strokeDashoffset = circumference - ((circumference / 100) * percent);
+      console.log(progress.style.strokeDashoffset);
+    }
+
+    setProgress(25);
+
+  </script>
+</body>
+</html>
