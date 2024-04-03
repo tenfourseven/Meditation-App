@@ -1,34 +1,3 @@
-:root {
-  --progress1: 0%;
-  --time1: 1000ms;
-  --progress2: 0%;
-  --time2: 1000ms;
-}
-
-@property --progress1 {
-  syntax: '<length-percentage>';
-  inherits: false;
-  initial-value: 0%;
-}
-
-@property --time1 {
-  syntax: '<time>';
-  inherits: false;
-  initial-value: 1000ms;
-}
-
-@property --progress2 {
-  syntax: '<length-percentage>';
-  inherits: false;
-  initial-value: 0%;
-}
-
-@property --time2 {
-  syntax: '<time>';
-  inherits: false;
-  initial-value: 1000ms;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -40,10 +9,40 @@ body {
   width: 100vw;
   height: 100vh;
   padding: 10px;
+  background-image: url('images/landscape-vector-art-8.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+ 
 }
 
+.display {
+  display: flex;
+}
+
+.set {
+  background-color: rgb(226, 39, 101, 0.1); 
+  border-radius: 8px;
+}
+
+button.menu {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 2px solid #e22765;
+  border-radius: 50%;
+  margin: 20px;
+  cursor: pointer;
+}
+
+button.menu:hover {
+  background: rgb(42, 17, 82, 0.5);
+}
+
+
 div#info {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: auto;
   padding: 10px;
   background-color: rgb(226, 39, 101, 0.1); 
@@ -57,6 +56,7 @@ div#info ul {
   padding: 10px 14px;
   background-color: rgb(226, 39, 101, 0.1); 
   border-radius: 8px;
+  margin: 0 10px 0 0;
 }
 
 div#info ul li {
@@ -65,6 +65,7 @@ div#info ul li {
   color: #e22765;
   /* display: inline-block; */
 }
+
 
 .container {
   position: fixed;
@@ -77,83 +78,52 @@ div#info ul li {
   place-items: center;
 }
 
-
-
-div#circle1 {
-  display: block;
+.svgbox {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 250px;
   height: 250px;
-  border-radius: 50%;
-  background: conic-gradient(  
-    #2EB8AC var(--progress1),
-     /* #CAF2EE 0%  */
-    #e22765 0%
-  );
+  display: grid;
+  place-items: center;
+}
 
-  position: relative;
+.circle {
+  stroke: #e22765;
+  stroke-width: 4px;
+  fill: none;
+}
+
+.progress {
+  stroke: rgb(255, 255, 255);
+  stroke-width: 4px;
+  stroke-dasharray: 766.66; 
+  stroke-dashoffset: 766.66;   
+  fill: none;
+  transform:  rotate(-90deg);
+  transform-origin: center;
   
 }
 
-div#circle2 {
-  display: block;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  background: conic-gradient(  
-    #e22765 var(--progress2),
-    /* #CAF2EE 0% */
-    #52f05f 0%
-  );
-
-  visibility: hidden;
-  transform: translateY(-250px);
-  position: relative;
-
+.progress2 {
+  stroke: rgb(115, 240, 121);
+  stroke-width: 4px;
+  stroke-dasharray: 766.66; 
+  stroke-dashoffset: 766.66;   
+  fill: none;
+  transform:  rotate(-90deg);
+  transform-origin: center;
 }
 
-  div#circle3 {
-  display: block;
-  width: 200px;
-  aspect-ratio: 1;
-  background-color: rgb(226, 39, 101, 0.2);
-  border-radius: 50%;
-  transform: translateY(-476px);
-  position: relative;
-} 
-
-
-
- div#circle1::after {
-  content: '';
-  width: calc(100% - 4px);
-  aspect-ratio: 1;
-  background: #2a1152;
-  border-radius: inherit;
-  position: absolute;
-  top: 2px;
-  left: 2px;
+.animate {
+  transition: stroke-dashoffset 5s linear;
+  stroke-dashoffset: 0;  
 }
 
-div#circle2::after {
-  content: '';
-  width: calc(100% - 4px);
-  aspect-ratio: 1;
-  background-color: #2a1152;
-  border-radius: inherit;
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  transition: background-color 2s ease;
-} 
-
-
-div#circle1.animateDelay {
-  transition: --progress1 var(--time1) linear;
-}
-
-div#circle2.animateTime {
-  visibility: visible;
-  transition: --progress2 var(--time2) linear;
+.animate2 {
+  transition: stroke-dashoffset 5s linear;
+  stroke-dashoffset: 0;  
 }
 
 
@@ -164,7 +134,7 @@ button#start {
   border-radius: 50%;
   background-color: #CAF2EE;
   border: none;
-  transform: translateY(-380px);
+  transform: translateY(200px);
   cursor: pointer;
   align-self: center;
 }

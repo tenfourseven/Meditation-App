@@ -8,28 +8,52 @@
 
 <style>
 
+ body {
+  background-image: url('images/landscape-vector-art-8.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+ }
+
 .svgbox {
   width: 250px;
   height: 250px;
-  
+  stroke-width: 4px;
+  stroke: rgb(155, 155, 155);
 }
 
 .circle {
-  stroke: grey;
+  stroke: rgb(0, 0, 0);
   fill: none;
 }
 
 .progress {
-  stroke: black;
+  stroke: rgb(240, 115, 115);
   stroke-width: 5px;
-  /* stroke-dasharray: 630; */
-  /* stroke-dashoffset: 40;   */
+  stroke-dasharray: 628.31; 
+  stroke-dashoffset: 628.31;   
   fill: none;
   transform:  rotate(-90deg);
   transform-origin: center;
+  transition: stroke-dashoffset 5s linear;
 }
 
+
+
+.animate {
+  /* animation: progress 5s forwards linear; */
+  stroke-dashoffset: 0;  
+}
+
+ 
+  /* @keyframes progress {
+  from { stroke-dashoffset: 628.31; }
+  to { stroke-dashoffset: 0; }
+  }
+   */
+
+
 </style>
+
 <body>
 
 
@@ -39,26 +63,38 @@
   </svg>
 
 
+  <button id="start">start</button>
+
+
   
 
   <script>
   
+    const startBtn = document.querySelector('button#start');
     const progress = document.querySelector('.progress');
     let radius = progress.r.baseVal.value;
     console.log(radius);
     // circumference 2PIr
     let circumference = radius*2*Math.PI;
     console.log(circumference);
-    progress.style.strokeDasharray = circumference;
+    // progress.style.strokeDasharray = circumference;
+    // progress.style.strokeDashoffset = circumference;
 
     // map to percentage values
     
-    function setProgress(percent) {
-      progress.style.strokeDashoffset = circumference - ((circumference / 100) * percent);
-      console.log(progress.style.strokeDashoffset);
-    }
+    // function setProgress(percent) {
+    //   progress.style.strokeDashoffset = circumference - ((circumference / 100) * percent);
+    //   console.log(progress.style.strokeDashoffset);
+    // }
 
-    setProgress(25);
+    // setProgress(25);
+
+    progress.style.transitionDuration = '30s';
+    
+   
+    startBtn.addEventListener('click', () => {
+      progress.classList.add('animate');
+    })
 
   </script>
 </body>

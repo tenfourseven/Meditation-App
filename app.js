@@ -7,14 +7,10 @@ const listTime = document.querySelector('#info ul.times li:nth-child(2) span');
 const listAudio1 = document.querySelector('#info ul.sounds li:nth-child(1) span');
 const listAudio2 = document.querySelector('#info ul.sounds li:nth-child(2) span');
 
-const circleUI1 = document.querySelector('div#circle1');
-const circleUI2 = document.querySelector('div#circle2');
 
-// const progress = document.querySelector('.progress');
-// progress.style.setProperty('--progress1', 0);
+const progress = document.querySelector('.progress');
+const progress2 = document.querySelector('.progress2');
 
-circleUI1.style.setProperty('--progress1', 0 + '%');
-circleUI2.style.setProperty('--progress2', 0 + '%');
 
 
 // Set Default Values to  Local Storage
@@ -34,26 +30,25 @@ listAudio2.innerHTML = localStorage.getItem('audio2');
 
 const setCircleDelay = (delay) => {
   let delayTime = delay*1000;
-  circleUI1.style.setProperty('--progress1', 100 + '%');
-  circleUI1.style.setProperty('--time1', delayTime + 'ms');
-  circleUI1.classList.add('animateDelay');
+  progress.style.strokeDashoffset = 0;
+  progress.style.transitionDuration = delay + 's';
+  progress.classList.add('animate');
   setTimeout( () => {
-    circleUI1.classList.remove('animateDelay');
-    circleUI1.style.setProperty('--progress1', 0 + '%');
+    progress.classList.remove('animate');
   }, delayTime );
 }
 
-
 const setCircleTime = (time) => {
   let medTime = time*1000;
-  circleUI2.style.setProperty('--progress2', 100 + '%');
-  circleUI2.style.setProperty('--time2', medTime + 'ms');
-  circleUI2.classList.add('animateTime');
+  progress2.style.strokeDashoffset = 0;
+  progress2.style.transitionDuration = time + 's';
+  progress2.classList.add('animate2');
   setTimeout( () => {
-    circleUI2.classList.remove('animateTime');
-    circleUI2.style.setProperty('--progress2', 0 + '%');
+    progress2.classList.remove('animate2');
   }, medTime );
 }
+
+
 
 
 // Update UI Info Box
@@ -117,7 +112,3 @@ const medTimer = () => {
 startBtn.addEventListener('click', e => medTimer());
 
 
-// NEXT STEPS
-
-
-// SVG Version einbinden
