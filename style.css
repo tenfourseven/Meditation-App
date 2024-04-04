@@ -14,17 +14,11 @@ body {
   background-position: center;
   background-size: cover;
   overflow: hidden;
- 
-}
-
-.display {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.set {
-  background-color: rgb(226, 39, 101, 0.1); 
-  border-radius: 8px;
-}
 
 button.menu {
   width: 40px;
@@ -40,6 +34,13 @@ button.menu:hover {
   background: rgb(42, 17, 82, 0.5);
 }
 
+header {
+  height: 100px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+}
 
 div#info {
   max-width: 1000px;
@@ -66,12 +67,18 @@ div#info ul li {
   /* display: inline-block; */
 }
 
+.display {
+  display: flex;
+}
+
+.set {
+  background-color: rgb(226, 39, 101, 0.1); 
+  border-radius: 8px;
+}
+
+
 
 .container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 250px;
   height: 250px;
   display: grid;
@@ -79,10 +86,6 @@ div#info ul li {
 }
 
 .svgbox {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 250px;
   height: 250px;
   display: grid;
@@ -134,7 +137,7 @@ button#start {
   border-radius: 50%;
   background-color: #CAF2EE;
   border: none;
-  transform: translateY(200px);
+  transform: translateY(50px);
   cursor: pointer;
   align-self: center;
 }
