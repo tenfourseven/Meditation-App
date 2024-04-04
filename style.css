@@ -34,9 +34,22 @@ button.menu:hover {
   background: rgb(42, 17, 82, 0.5);
 }
 
+/* Simulate App Layout */
+.viewport {
+  border:2px solid #e22765;
+  border-radius: 10px;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 header {
   height: 100px;
-  position: fixed;
+  position: absolute;
   top: 10px;
   left: 10px;
   right: 10px;
