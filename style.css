@@ -1,3 +1,12 @@
+:root {
+  --main-dark: #2b253d;
+  --main-accent: #e22765;
+  --main-accent-light: #ee81a6;
+  --main-accent-tp: 226, 39, 101;
+  --main-action: #bffff9;
+  --main-shadow : #1d1929;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,14 +14,9 @@
 }
 
 body {
-  background-color: #2a1152; 
+  background-color: var(--main-dark); 
   width: 100vw;
   height: 100vh;
-  padding: 10px;
-  background-image: url('images/landscape-vector-art-8.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -24,19 +28,20 @@ button.menu {
   width: 40px;
   height: 40px;
   background: transparent;
-  border: 2px solid #e22765;
+  border: 2px solid var(--main-accent);
   border-radius: 50%;
   margin: 20px;
   cursor: pointer;
 }
 
 button.menu:hover {
-  background: rgb(42, 17, 82, 0.5);
+  background: var(--main-shadow);
 }
 
-/* Simulate App Layout */
+/* Simulate Mobile App */
 .viewport {
-  border:2px solid #e22765;
+  border:2px solid var(--main-shadow);
+  background-color: var(--main-shadow);
   border-radius: 10px;
   position: relative;
   width: 100%;
@@ -45,7 +50,28 @@ button.menu:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  right: -500px;
+  bottom: 0;
+  width: 400px;
+  background-color: var(--main-dark);
+  visibility: hidden;
+  -webkit-box-shadow: -3px 0px 8px 3px var(--main-shadow); 
+  box-shadow: -3px 0px 8px 3px var(--main-shadow);
+
+  border-radius: 10px;
+  transition: right 500ms ease;
+  
+}
+
+.sidebar.open {
+  right: 0;
+} 
 
 header {
   height: 100px;
@@ -59,7 +85,8 @@ div#info {
   max-width: 1000px;
   margin: auto;
   padding: 10px;
-  background-color: rgb(226, 39, 101, 0.1); 
+  /* background-color: rgba(226, 39, 101, 0.1);  */
+  background-color: rgba(var(--main-accent-tp), 0.1); 
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
@@ -68,16 +95,15 @@ div#info {
 div#info ul {
   list-style: none;
   padding: 10px 14px;
-  background-color: rgb(226, 39, 101, 0.1); 
+  background-color: rgba(var(--main-accent-tp), 0.1); 
   border-radius: 8px;
-  margin: 0 10px 0 0;
+  margin: 0 0 0 10px;
 }
 
 div#info ul li {
   font-family: 'EB Garamond', serif;
   font-size: 1.4rem;
-  color: #e22765;
-  /* display: inline-block; */
+  color: var(--main-accent);
 }
 
 .display {
@@ -85,7 +111,7 @@ div#info ul li {
 }
 
 .set {
-  background-color: rgb(226, 39, 101, 0.1); 
+  background-color: rgba(var(--main-accent-tp), 0.1);  
   border-radius: 8px;
 }
 
@@ -106,13 +132,13 @@ div#info ul li {
 }
 
 .circle {
-  stroke: #e22765;
+  stroke: var(--main-accent);
   stroke-width: 4px;
   fill: none;
 }
 
 .progress {
-  stroke: rgb(255, 255, 255);
+  stroke: var(--main-accent-light);
   stroke-width: 4px;
   stroke-dasharray: 766.66; 
   stroke-dashoffset: 766.66;   
@@ -123,7 +149,7 @@ div#info ul li {
 }
 
 .progress2 {
-  stroke: rgb(115, 240, 121);
+  stroke: var(--main-action);
   stroke-width: 4px;
   stroke-dasharray: 766.66; 
   stroke-dashoffset: 766.66;   
@@ -148,7 +174,7 @@ button#start {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #CAF2EE;
+  background-color: var(--main-action);
   border: none;
   transform: translateY(50px);
   cursor: pointer;
@@ -157,9 +183,138 @@ button#start {
 
 button#start.disabled {
   cursor: default;
-  background-color: #e22765;
+  background-color: var(--main-accent);
+}
+
+.delayTimes, .medTimes {
+  margin: 20px;
+}
+
+.delayTimes h3, .medTimes h3 {
+  font-family: 'EB Garamond', serif;
+  color: var(--main-accent);
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.delayTimes ul, .medTimes ul {
+  list-style: none;
+  margin: 10px 0;
+  display: flex;
+  width: 280px;
+  justify-content: space-between;
+}
+
+.delayTimes button, .medTimes button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(var(--main-accent-tp), 0.2); 
+  cursor: pointer;
+  font-family: 'EB Garamond', serif;
+  color: var(--main-accent);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.delayTimes button:hover, .delayTimes button.active,
+.medTimes button:hover, .medTimes button.active {
+  background-color: var(--main-accent); 
+  color: var(--main-dark);
+  cursor: pointer;
+}
+
+.startSounds, .endSounds { 
+  margin: 45px 0 20px 20px;
+}
+.startSounds h3, .endSounds h3 { 
+  font-family: 'EB Garamond', serif;
+  color: var(--main-accent);
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 600;
 }
 
 
+.select-sound {
+  display: block;
+  margin: 10px 0;
+  padding: 8px 12px;
+  width: 280px;
+  height: 44px;
+  border: none;
+  outline: none;
+  background-color: rgba(var(--main-accent-tp), 0.2); 
+  font-family: 'EB Garamond', serif;
+  color: var(--main-accent);
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 5px;
+  position: relative;
+}
 
+
+button.dropdown {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 44px;
+  height: 44px;
+  background-color: var(--main-accent);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.arrow {
+  margin-top: 12px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: var(--main-shadow) transparent transparent;
+  transform: rotate(0deg);
+  transform-origin: 10px 4px;
+  /* transition: transform 500ms ease; */
+}
+
+.arrow.rotate {
+  transform: rotate(180deg);
+}
+
+ul.dropdown-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  width: 280px;
+  opacity: 0;
+  display: none;
+  background-color: var(--main-dark);
+  -webkit-box-shadow: -2px 2px 5px 2px var(--main-shadow); 
+  box-shadow: -2px 2px 5px 2px var(--main-shadow);
+  position: absolute;
+  z-index: 9999;
+}
+
+ul.dropdown-list.open {
+  opacity: 1;
+  display: block;
+}
+
+ul.dropdown-list li {
+  font-family: 'EB Garamond', serif;
+  color: var(--main-accent);
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 8px 12px;
+  background-color: rgba(var(--main-accent-tp), 0.1);
+  cursor: pointer;
+}
+
+ul.dropdown-list li:hover {
+  background-color: var(--main-shadow);
+}
 

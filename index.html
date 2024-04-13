@@ -10,8 +10,12 @@
 </head>
 <body>
   <div class="viewport">
+
     <header>
       <div id="info">
+        <div class="set">
+          <button class="menu"></button>
+        </div>
         <div class="display">
           <ul class="times">
             <li><span>05</span></li> 
@@ -22,28 +26,84 @@
             <li><span>Deep Bowl</span></li>
           </ul>
         </div>
-        <div class="set">
-          <button class="menu"></button>
-        </div>
+       
       </div>
     </header>
   
-  
-  
     <div class="container">
-      <svg class="svgbox">
+      <svg class="svgbox">    
         <circle class="circle" r="122" cx="125" cy="125" />
         <circle class="progress" r="122" cx="125" cy="125" />
         <circle class="progress2" r="122" cx="125" cy="125" />
       </svg>
       <button id="start"></button>
     </div>
+
+    <div class="sidebar">
+      <div class="delayTimes">
+        <h3>Delay Time (sec) :</h3>
+        <ul>
+          <li><button>10</button></li>
+          <li><button>20</button></li>
+          <li><button>30</button></li>
+          <li><button>60</button></li>
+        </ul>
+      </div>
+      <div class="medTimes">
+        <h3>Meditation Time (min) :</h3>
+        <ul>
+          <li><button>10</button></li>
+          <li><button>20</button></li>
+          <li><button>30</button></li>
+          <li><button>60</button></li>
+        </ul>
+      </div>
+
+    <div class="selectFields">
+      <div class="startSounds">
+        <h3>Start Sound :</h3>
+        <div class="select-sound">
+          <p class="selected">High Bowl</p>
+          <button class="dropdown" role="open-dropdown">
+            <div class="arrow"></div>
+          </button>
+        </div>
+        <ul class="dropdown-list">
+          <li>High Bowl</li>
+          <li>Deep Bowl</li>
+          <li>Light Bowl</li>
+          <li>Gong Bowl</li>
+        </ul>
+      </div>
+
+      <div class="endSounds">
+        <h3>End Sound :</h3>
+        <div class="select-sound">
+          <p class="selected">Deep Bowl</p>
+          <button class="dropdown" role="open-dropdown">
+            <div class="arrow"></div>
+          </button>
+        </div>
+        <ul class="dropdown-list">
+          <li>High Bowl</li>
+          <li>Deep Bowl</li>
+          <li>Light Bowl</li>
+          <li>Gong Bowl</li>
+        </ul>
+      </div>
+    </div>
+      
+
+    </div>   
+    
   </div>
 
   
 
   
+ 
   <script src="app.js"></script>
+  <script src="select.js"></script>
 
 </body>
 </html>

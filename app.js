@@ -1,4 +1,9 @@
+const menuBtn = document.querySelector('.menu');
+const sideBar = document.querySelector('.sidebar');
+
 const startBtn = document.querySelector('button#start');
+
+// Audio Files
 const audio1 = new Audio('/sound/singing-bowl-light-14s.mp3');
 const audio2 = new Audio('/sound/singing-bowl-deep-20s.mp3');
 
@@ -7,18 +12,17 @@ const listTime = document.querySelector('#info ul.times li:nth-child(2) span');
 const listAudio1 = document.querySelector('#info ul.sounds li:nth-child(1) span');
 const listAudio2 = document.querySelector('#info ul.sounds li:nth-child(2) span');
 
-
+// Circle Timer
 const progress = document.querySelector('.progress');
 const progress2 = document.querySelector('.progress2');
 
 
 
 // Set Default Values to  Local Storage
-localStorage.setItem('delay', '05');
-localStorage.setItem('time', '10');
+localStorage.setItem('delay', '10');
+localStorage.setItem('time', '20');
 localStorage.setItem('audio1', 'High Bowl');
 localStorage.setItem('audio2', 'Deep Bowl');
-
 
 //  Set Default UI Info Box Values
 listDelay.innerHTML = localStorage.getItem('delay');
@@ -27,14 +31,40 @@ listAudio1.innerHTML = localStorage.getItem('audio1');
 listAudio2.innerHTML = localStorage.getItem('audio2');
 
 
+// Sidebar Delay Setting
+const delaySet = document.querySelectorAll('.delayTimes ul li button');
+delaySet.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    localStorage.setItem('delay', btn.innerHTML);
+    listDelay.innerHTML = localStorage.getItem('delay');
+    delaySet.forEach(btn => btn.classList.remove('active'));
+    e.target.classList.toggle('active');
+  })
+})
+
+
+// Sidebar Meditation Setting
+const timeSet = document.querySelectorAll('.medTimes ul li button');
+timeSet.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    localStorage.setItem('time', btn.innerHTML);
+    listTime.innerHTML = localStorage.getItem('time');
+    timeSet.forEach(btn => btn.classList.remove('active'));
+    e.target.classList.toggle('active');
+  })
+})
+
+
+
+// Main Animation Functions
 
 const setCircleDelay = (delay) => {
   let delayTime = delay*1000;
-  progress.style.strokeDashoffset = 0;
+  // progress.style.strokeDashoffset = 0;
   progress.style.transitionDuration = delay + 's';
   progress.classList.add('animate');
   setTimeout( () => {
-    progress.classList.remove('animate');
+    // progress.classList.remove('animate');
   }, delayTime );
 }
 
@@ -47,8 +77,6 @@ const setCircleTime = (time) => {
     progress2.classList.remove('animate2');
   }, medTime );
 }
-
-
 
 
 // Update UI Info Box
@@ -108,6 +136,15 @@ const medTimer = () => {
 
 };
 
+
+menuBtn.addEventListener('click', (e) => {
+  sideBar.classList.toggle('open');
+  if(!(sideBar.classList.contains('open'))){
+    sideBar.addEventListener('transitionend', () => {
+      sideBar.style.visibility = 'hidden'
+    }, {once: true});
+  } else sideBar.style.visibility = 'visible';
+})
 
 startBtn.addEventListener('click', e => medTimer());
 
