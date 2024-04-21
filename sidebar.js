@@ -1,8 +1,33 @@
+
+const delaySet = document.querySelectorAll('.delayTimes ul li button');
+const timeSet = document.querySelectorAll('.medTimes ul li button');
 const selectFields = document.querySelector('.selectFields')
 const startSounds = document.querySelector('.startSounds');
 const endSounds = document.querySelector('.endSounds');
 
+// Sidebar Delay Setting
+delaySet.forEach(btn => {
+  if(btn.innerHTML === listDelay.innerHTML) btn.classList.add('active');
+  btn.addEventListener('click', (e) => {
+    localStorage.setItem('delay', btn.innerHTML); 
+    listDelay.innerHTML = localStorage.getItem('delay');
+    delaySet.forEach(btn => btn.classList.remove('active'));
+    e.target.classList.toggle('active');
+  })
+})
 
+// Sidebar Meditation Setting
+timeSet.forEach(btn => {
+  if(btn.innerHTML === listTime.innerHTML) btn.classList.add('active');
+  btn.addEventListener('click', (e) => {
+    localStorage.setItem('time', btn.innerHTML);
+    listTime.innerHTML = localStorage.getItem('time');
+    timeSet.forEach(btn => btn.classList.remove('active'));
+    e.target.classList.toggle('active');
+  })
+})
+
+// Sidebar SELECT
 console.log(selectFields.children);
 
 // function getAllSiblings(element, parent) {

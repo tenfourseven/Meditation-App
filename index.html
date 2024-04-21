@@ -9,39 +9,39 @@
   
 </head>
 <body>
-  <div class="viewport">
 
+  <div class="viewport">
     <header>
       <div id="info">
-        <div class="set">
-          <button class="menu"></button>
-        </div>
         <div class="display">
           <ul class="times">
-            <li><span>05</span></li> 
-            <li><span>10</span></li> 
+            <li><span>05</span> sek</li> 
+            <li><span>10</span> min</li> 
           </ul>
           <ul class="sounds">
             <li><span>High Bowl</span></li> 
             <li><span>Deep Bowl</span></li>
           </ul>
         </div>
-       
+        <div class="set">
+          <button class="menu"></button>
+        </div>  
       </div>
     </header>
   
     <div class="container">
       <svg class="svgbox">    
-        <circle class="circle" r="122" cx="125" cy="125" />
-        <circle class="progress" r="122" cx="125" cy="125" />
-        <circle class="progress2" r="122" cx="125" cy="125" />
+        <circle class="circle" />
+        <circle class="progress1" />
+        <circle class="progress2" />
       </svg>
       <button id="start"></button>
     </div>
 
+
     <div class="sidebar">
       <div class="delayTimes">
-        <h3>Delay Time (sec) :</h3>
+        <h3>Delay Time (sek) :</h3>
         <ul>
           <li><button>10</button></li>
           <li><button>20</button></li>
@@ -92,18 +92,18 @@
         </ul>
       </div>
     </div>
+    <div class="themes">
+      <h3>Theme:</h3>
+      <p>Indigo Dark</p>
+    </div>
       
 
     </div>   
     
   </div>
-
-  
-
-  
  
   <script src="app.js"></script>
-  <script src="select.js"></script>
+  <script src="sidebar.js"></script>
 
 </body>
 </html>

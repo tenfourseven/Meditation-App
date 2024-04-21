@@ -17,16 +17,25 @@ body {
   background-color: var(--main-dark); 
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  /* overflow: hidden; */
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'EB Garamond', serif;
+}
+
+h3, p {
+  font-size: 1.2rem;
+  font-family: 'EB Garamond', serif;
+  color: var(--main-accent);
+  font-style: italic;
+  font-weight: 600;
 }
 
 
 button.menu {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   background: transparent;
   border: 2px solid var(--main-accent);
   border-radius: 50%;
@@ -38,15 +47,14 @@ button.menu:hover {
   background: var(--main-shadow);
 }
 
-/* Simulate Mobile App */
 .viewport {
-  border:2px solid var(--main-shadow);
+  /* border:2px solid var(--main-shadow); */
   background-color: var(--main-shadow);
   border-radius: 10px;
   position: relative;
   width: 100%;
-  max-width: 600px;
-  height: 90vh;
+  /* max-width: 600px; */
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,15 +66,14 @@ button.menu:hover {
   top: 0;
   right: -500px;
   bottom: 0;
-  width: 400px;
+  width: 310px;
   background-color: var(--main-dark);
   visibility: hidden;
   -webkit-box-shadow: -3px 0px 8px 3px var(--main-shadow); 
   box-shadow: -3px 0px 8px 3px var(--main-shadow);
 
   border-radius: 10px;
-  transition: right 500ms ease;
-  
+  transition: right 400ms ease;
 }
 
 .sidebar.open {
@@ -74,19 +81,20 @@ button.menu:hover {
 } 
 
 header {
-  height: 100px;
+  height: 70px;
   position: absolute;
   top: 10px;
   left: 10px;
   right: 10px;
 }
 
+
 div#info {
   max-width: 1000px;
   margin: auto;
-  padding: 10px;
+  /* padding: 10px; */
   /* background-color: rgba(226, 39, 101, 0.1);  */
-  background-color: rgba(var(--main-accent-tp), 0.1); 
+  /* background-color: rgba(var(--main-accent-tp), 0.1);  */
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
@@ -97,13 +105,18 @@ div#info ul {
   padding: 10px 14px;
   background-color: rgba(var(--main-accent-tp), 0.1); 
   border-radius: 8px;
-  margin: 0 0 0 10px;
+  margin: 0 10px 0 0;
 }
 
 div#info ul li {
-  font-family: 'EB Garamond', serif;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   color: var(--main-accent);
+}
+
+div#info ul li {
+  font-size: 1.1rem;
+  color: var(--main-accent);
+  line-height: 1.5rem;
 }
 
 .display {
@@ -117,57 +130,56 @@ div#info ul li {
 
 
 
+/*  Main  */
+
 .container {
-  width: 250px;
-  height: 250px;
+  width: max-content;
+  height: max-content;
   display: grid;
   place-items: center;
 }
 
 .svgbox {
-  width: 250px;
-  height: 250px;
+  aspect-ratio: 1;
   display: grid;
   place-items: center;
 }
 
 .circle {
   stroke: var(--main-accent);
-  stroke-width: 4px;
+  stroke-width: 2px;
   fill: none;
 }
 
-.progress {
+.progress1 {
   stroke: var(--main-accent-light);
   stroke-width: 4px;
-  stroke-dasharray: 766.66; 
-  stroke-dashoffset: 766.66;   
   fill: none;
   transform:  rotate(-90deg);
   transform-origin: center;
-  
+  /* stroke-dasharray: 728.8;
+  stroke-dashoffset: 728.8; */
 }
 
 .progress2 {
   stroke: var(--main-action);
   stroke-width: 4px;
-  stroke-dasharray: 766.66; 
-  stroke-dashoffset: 766.66;   
   fill: none;
   transform:  rotate(-90deg);
   transform-origin: center;
+  /* stroke-dasharray: 728.8;
+  stroke-dashoffset: 728.8; */
 }
 
-.animate {
-  transition: stroke-dashoffset 5s linear;
-  stroke-dashoffset: 0;  
+.animate1 {
+  transition: stroke-dashoffset 0s linear;
+  /* stroke-dashoffset: 0;   */
 }
 
 .animate2 {
-  transition: stroke-dashoffset 5s linear;
-  stroke-dashoffset: 0;  
+  transition: stroke-dashoffset 0s linear;
+  /* stroke-dashoffset: 0;   */
 }
-
 
 
 button#start {
@@ -176,7 +188,7 @@ button#start {
   border-radius: 50%;
   background-color: var(--main-action);
   border: none;
-  transform: translateY(50px);
+  margin-top: 40px; 
   cursor: pointer;
   align-self: center;
 }
@@ -186,28 +198,23 @@ button#start.disabled {
   background-color: var(--main-accent);
 }
 
+
+/*  Sidebar  */
+
 .delayTimes, .medTimes {
   margin: 20px;
-}
-
-.delayTimes h3, .medTimes h3 {
-  font-family: 'EB Garamond', serif;
-  color: var(--main-accent);
-  font-size: 1.5rem;
-  font-style: italic;
-  font-weight: 600;
 }
 
 .delayTimes ul, .medTimes ul {
   list-style: none;
   margin: 10px 0;
   display: flex;
-  width: 280px;
+  width: 270px;
   justify-content: space-between;
 }
 
 .delayTimes button, .medTimes button {
-  padding: 10px 20px;
+  padding: 8px 20px;
   border: none;
   border-radius: 5px;
   background-color: rgba(var(--main-accent-tp), 0.2); 
@@ -223,25 +230,18 @@ button#start.disabled {
   background-color: var(--main-accent); 
   color: var(--main-dark);
   cursor: pointer;
+  font-weight: 700;
 }
 
-.startSounds, .endSounds { 
-  margin: 45px 0 20px 20px;
+.startSounds, .endSounds, .themes { 
+  margin: 30px 0 20px 20px;
 }
-.startSounds h3, .endSounds h3 { 
-  font-family: 'EB Garamond', serif;
-  color: var(--main-accent);
-  font-size: 1.5rem;
-  font-style: italic;
-  font-weight: 600;
-}
-
 
 .select-sound {
   display: block;
   margin: 10px 0;
   padding: 8px 12px;
-  width: 280px;
+  width: 270px;
   height: 44px;
   border: none;
   outline: none;
@@ -278,7 +278,6 @@ button.dropdown {
   border-color: var(--main-shadow) transparent transparent;
   transform: rotate(0deg);
   transform-origin: 10px 4px;
-  /* transition: transform 500ms ease; */
 }
 
 .arrow.rotate {
@@ -289,7 +288,7 @@ ul.dropdown-list {
   margin: 0;
   padding: 0;
   list-style-type: none;
-  width: 280px;
+  width: 270px;
   opacity: 0;
   display: none;
   background-color: var(--main-dark);
@@ -318,3 +317,23 @@ ul.dropdown-list li:hover {
   background-color: var(--main-shadow);
 }
 
+
+.themes p {
+  display: inline-block;
+  height: 44px;
+  background-color: rgba(var(--main-accent-tp), 0.1);
+  border-radius: 5px;
+  padding: 8px 18px;
+  margin: 10px 0;
+}
+
+
+/* MEDIA */
+
+@media screen and (min-width: 600px) {
+  .viewport {
+    max-width: 600px;
+    height: 95vh;
+    border:2px solid var(--main-shadow);
+  }
+}
