@@ -1,22 +1,7 @@
-const viewport = document.querySelector('.viewport');
-const menuBtn = document.querySelector('.menu');
-const sideBar = document.querySelector('.sidebar');
-
 const startBtn = document.querySelector('button#start');
-
-// Audio Files
-const audio1 = new Audio('/sound/tap-notification-180637.ogg');
-const audio2 = new Audio('/sound/tap-notification-180637.ogg');
-// const audio1 = new Audio('/sound/singing-bowl-light-14s.mp3');
-// const audio2 = new Audio('/sound/singing-bowl-deep-20s.mp3');
-audio1.preload = 'auto';
-audio2.preload = 'auto';
-
 
 const listDelay = document.querySelector('#info ul.times li:nth-child(1) span');
 const listTime = document.querySelector('#info ul.times li:nth-child(2) span');
-const listAudio1 = document.querySelector('#info ul.sounds li:nth-child(1) span');
-const listAudio2 = document.querySelector('#info ul.sounds li:nth-child(2) span');
 
 // Circle Timer
 const svgbox = document.querySelector('.svgbox');
@@ -29,13 +14,13 @@ localStorage.setItem('delay', '10');
 localStorage.setItem('time', '10');
 localStorage.setItem('audio1', 'High Bowl');
 localStorage.setItem('audio2', 'Deep Bowl');
+localStorage.setItem('audio3', 'Forest');
 
-//  Set Default UI Info Box Values
+//  Set Default UI Time Values
 listDelay.innerHTML = localStorage.getItem('delay');
 listTime.innerHTML = localStorage.getItem('time');
-listAudio1.innerHTML = localStorage.getItem('audio1');
-listAudio2.innerHTML = localStorage.getItem('audio2');
 
+// Main UI Display
 const initSVG = (svg_size) => {
   svgbox.style.width = `${svg_size}px`;
   svgbox.querySelectorAll('circle').forEach(circle => {
@@ -51,21 +36,18 @@ const initCircleTimer = (element) => {
   element.style.strokeDashoffset = Math.ceil(circumference);
 }
 
-initSVG(240);
+initSVG(250);
 initCircleTimer(progress1);
 initCircleTimer(progress2);
 
-// Main Animation Functions
 
+
+// Main Animation Functions
 const setCircleDelay = (delay) => {
   let delayTime = delay*1000;
   progress1.style.strokeDashoffset = 0;
   progress1.classList.add('animate1');
   progress1.style.transitionDuration = delay + 's';
-  progress1.addEventListener('transitionend', () => {
-    console.log('transition ended');
-    audioPlayer(audio1, 0.5);
-  })
  
   setTimeout( () => {
     // reset delay
@@ -73,7 +55,6 @@ const setCircleDelay = (delay) => {
     let circumference = progress1.getAttribute('r')*2*Math.PI;
     progress1.style.strokeDashoffset = Math.ceil(circumference);
     progress1.style.transitionDuration = '0s';
-   
   }, delayTime );
 }
 
@@ -82,10 +63,6 @@ const setCircleTime = (time) => {
   progress2.style.strokeDashoffset = 0;
   progress2.classList.add('animate2');
   progress2.style.transitionDuration = time + 's';
-  progress2.addEventListener('transitionend', () => {
-    console.log('transition ended');
-    audioPlayer(audio2, 0.4);
-  })
   
   setTimeout( () => {
     // reset timer
@@ -97,7 +74,7 @@ const setCircleTime = (time) => {
 }
 
 
-// Update UI Info Box
+// Update UI Times
 const updateInfoBox = (value, elt) => {
   let intervalID = setInterval(()=> {
     value--;
@@ -109,80 +86,62 @@ const updateInfoBox = (value, elt) => {
   }, 1000);
 };
 
-// Set Audio Function
-const audioPlayer = (audio, vol) => {
-  audio.play();
-  audio.volume = vol;
-};
 
 // Main Meditaion Function 
 
 const medTimer = () => {
+
+  // Audio Init
+  const audio1 = new Howl({ src: ['sound/tap-notification-180637_441.mp3'],
+  volume: 0.3, preload: true });
+  const audio2 = new Howl({ src: ['sound/tap-notification-180637_441.mp3'],
+  volume: 0.3, preload: true });
+  const audio3 = new Howl({ src: ['sound/forest-with-small-river-birds-and-nature-field-recording-6735.mp3'],
+  volume: 0.3, preload: true });
+
   let delay = localStorage.getItem('delay');
   let time = localStorage.getItem('time');
 
-  //console.log('delay start');
   updateInfoBox(delay, listDelay);
   setCircleDelay(delay);
- 
   startBtn.disabled = true;
   startBtn.classList.add('disabled');
 
   setTimeout(() => {
-    console.log('delay end');
-    //console.log('meditation start');
-
     updateInfoBox(time, listTime);
     setCircleTime(time);
-    // audioPlayer(audio1, 0.4);
+     audio1.play();
+     audio1.volume = 0.2;
+     audio3.play();
+     audio3.volume = 0.4;
 
     setTimeout(() => { 
-      // console.log('meditation end');
-
-      audioPlayer(audio2, 0.4);
-      audio2.addEventListener('ended', () => {
+      audio3.stop();
+      audio2.play();
+      audio2.volume = 0.2;
+      audio2.on('end', function(){
+        
         startBtn.disabled = false;
         startBtn.classList.remove('disabled');
-        console.log('audio2 finished!');
 
         listDelay.innerHTML = delay;
         listTime.innerHTML = time;
-      })  
-
+      }) 
     }, time*1000)  
   }, delay*1000)
-
 };
 
 
-// Toggle Sidebar / Disable on Key
-menuBtn.addEventListener('click', () => {
-  sideBar.classList.toggle('open');
-  if(!(sideBar.classList.contains('open'))){
-    sideBar.addEventListener('transitionend', () => {
-      sideBar.style.visibility = 'hidden'
-    }, {once: true});
-  } else sideBar.style.visibility = 'visible';
-})
-
-// Close Sidebar on Display Click
-viewport.addEventListener('click', (e) => {
-  if(sideBar.classList.contains('open')){
-    if(!(sideBar.contains(e.target)) && e.target !== menuBtn){
-      sideBar.classList.toggle('open');
-      sideBar.addEventListener('transitionend', () => {
-        sideBar.style.visibility = 'hidden'
-      }, {once: true});
-    }
-  }
+startBtn.addEventListener('click', e => {
+  medTimer()
 });
 
 
-startBtn.addEventListener('click', e => medTimer());
+// THEMEN
 
+// close dropdown on sidebar closed
 
-
-// Sound Sync
+// Sound Sync -> Laggy 0n Chrome (Android 8)
 // Remove unused event listeners ?!
 
 
@@ -190,5 +149,7 @@ startBtn.addEventListener('click', e => medTimer());
 // Browser Testing
 // Accessibility Tests
 // UI Themes -> Default: Indigo Dark
+
+// disable orientation landscape on mobile
 
 

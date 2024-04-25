@@ -9,24 +9,10 @@
   
 </head>
 <body>
-
+  
   <div class="viewport">
     <header>
-      <div id="info">
-        <div class="display">
-          <ul class="times">
-            <li><span>05</span> sek</li> 
-            <li><span>10</span> min</li> 
-          </ul>
-          <ul class="sounds">
-            <li><span>High Bowl</span></li> 
-            <li><span>Deep Bowl</span></li>
-          </ul>
-        </div>
-        <div class="set">
-          <button class="menu"></button>
-        </div>  
-      </div>
+      <h1>Meditation App</h1>
     </header>
   
     <div class="container">
@@ -35,8 +21,21 @@
         <circle class="progress1" />
         <circle class="progress2" />
       </svg>
-      <button id="start"></button>
+      
     </div>
+    <button id="start"></button>
+    <footer>
+      <div id="info">
+        <div class="display">
+          <ul class="times">
+            <li><span>05</span> sek</li> 
+            <li><span>10</span> min</li> 
+          </ul>
+        </div>
+      </div>
+
+      <button class="menu"></button>
+    </footer>
 
 
     <div class="sidebar">
@@ -59,51 +58,66 @@
         </ul>
       </div>
 
-    <div class="selectFields">
-      <div class="startSounds">
-        <h3>Start Sound :</h3>
-        <div class="select-sound">
-          <p class="selected">High Bowl</p>
-          <button class="dropdown" role="open-dropdown">
-            <div class="arrow"></div>
-          </button>
+      <div class="selectFields">
+        <div class="startSounds">
+          <h3>Start Sound :</h3>
+          <div class="select-sound">
+            <p class="selected">High Bowl</p>
+            <button class="dropdown" role="open-dropdown">
+              <div class="arrow"></div>
+            </button>
+          </div>
+          <ul class="dropdown-list">
+            <li>High Bowl</li>
+            <li>Deep Bowl</li>
+            <li>Light Bowl</li>
+            <li>Gong Bowl</li>
+          </ul>
         </div>
-        <ul class="dropdown-list">
-          <li>High Bowl</li>
-          <li>Deep Bowl</li>
-          <li>Light Bowl</li>
-          <li>Gong Bowl</li>
-        </ul>
-      </div>
 
-      <div class="endSounds">
-        <h3>End Sound :</h3>
-        <div class="select-sound">
-          <p class="selected">Deep Bowl</p>
-          <button class="dropdown" role="open-dropdown">
-            <div class="arrow"></div>
-          </button>
+        <div class="endSounds">
+          <h3>End Sound :</h3>
+          <div class="select-sound">
+            <p class="selected">Deep Bowl</p>
+            <button class="dropdown" role="open-dropdown">
+              <div class="arrow"></div>
+            </button>
+          </div>
+          <ul class="dropdown-list">
+            <li>High Bowl</li>
+            <li>Deep Bowl</li>
+            <li>Light Bowl</li>
+            <li>Gong Bowl</li>
+          </ul>
         </div>
-        <ul class="dropdown-list">
-          <li>High Bowl</li>
-          <li>Deep Bowl</li>
-          <li>Light Bowl</li>
-          <li>Gong Bowl</li>
-        </ul>
-      </div>
-    </div>
-    <div class="themes">
-      <h3>Theme:</h3>
-      <p>Indigo Dark</p>
-    </div>
-      
 
+        <div class="ambientSounds">
+          <h3>Ambient :</h3>
+          <div class="select-sound">
+            <p class="selected">Forest</p>
+            <button class="dropdown" role="open-dropdown">
+              <div class="arrow"></div>
+            </button>
+          </div>
+          <ul class="dropdown-list">
+            <li>Shamanic</li>
+            <li>Forest</li>
+            <li>Rain</li>
+            <li>Indian</li>
+          </ul>
+        </div>
+      </div>
     </div>   
-    
+  
   </div>
- 
+
+
+
+  <script src="howler.js"></script>
   <script src="app.js"></script>
   <script src="sidebar.js"></script>
+  
+
 
 </body>
 </html>
